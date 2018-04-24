@@ -1,0 +1,1 @@
+Food energy is expressed in kilojoules (kJ) calculated based on the Atwater system for determining energy values. The data represent physiologically available energy, which is the energy value remaining after digestive and urinary losses are deducted from gross energy. Food energy in kilojoules (kJ) can be converted using the formula 1 kcal = 4.18 kJ.

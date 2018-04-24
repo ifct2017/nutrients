@@ -1,0 +1,3 @@
+Thiamin, Riboflavin and Niacin: Thiamin was determined chemically by the thiochrome procedure and riboflavin by microbiological method. Niacin is determined by microbiological method. The values represent only preformed niacin and do not include the niacin contributed by tryptophan, a niacin precursor. Niacin equivalent applies to the sum of the preformed niacin and the amount that could be derived from tryptophan can be calculated as:
+
+Niacin equivalents (mg) = Niacin (mg)+ (Tryptophan, mg / 60).

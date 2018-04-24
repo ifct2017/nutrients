@@ -1,0 +1,1 @@
+Protein values were calculated from the estimated total nitrogen in the food using the Jones (1941) conversion factors. Protein values for soybean and mushrooms contain considerable nonprotein nitrogen (NPN) in several form including urea, purines & pyrimidine. Therefore, NPN was estimated and subtracted from total nitrogen of mushrooms before multiplying with the Jones factor.

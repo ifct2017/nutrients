@@ -1,0 +1,1 @@
+Cholesterol values are generated primarily by gas liquid chromatographic method in foods of animal origin assuming that cholesterol is present only in animal origin foods. Cholesterol values are expressed as mg/100g food. To convert to mmol cholesterol, divide the values by 386.6.

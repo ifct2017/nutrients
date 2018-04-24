@@ -1,0 +1,1 @@
+Amino acid profile of each food is determined by three different analyses. Tryptophan is determined by alkaline hydrolysis, methionine and cystine by performic oxidation and the rest of the amino acids by acid hydrolysis. The amino acid profile of each food is expressed as g/100 g protein.
