@@ -10,7 +10,6 @@ const nutrients = require('@ifct2017/nutrients');
 // nutrients(<query>)
 // -> "description" if found, null otherwise
 // nutrients.corpus: Map {code => {code, tags, desc}}
-// nutrients.csv(): path to csv file
 
 nutrients('his');
 nutrients('Histidine');
