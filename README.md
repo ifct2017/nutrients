@@ -1,6 +1,6 @@
 # @ifct2017/nutrients
 
-[![IFCT2017](http://ninindia.org/images/ifct_2017.png)](http://ninindia.org/ifct_2017.htm)
+[![ifct2017](http://ninindia.org/images/ifct_2017.png)](https://www.npmjs.com/package/ifct2017)
 
 Information of nutrients in [Indian Food Composition Tables 2017].<br>
 Check available [nutrient descriptions].
@@ -9,7 +9,7 @@ Check available [nutrient descriptions].
 const nutrients = require('@ifct2017/nutrients');
 // nutrients(<query>)
 // -> "description" if found, null otherwise
-// nutrients.corpus: Map {code => {code, tags, desc}}
+// nutrients.corpus: Map {code => description}
 
 nutrients('his');
 nutrients('Histidine');
