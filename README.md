@@ -7,9 +7,14 @@ Check available [nutrient descriptions].
 
 ```javascript
 const nutrients = require('@ifct2017/nutrients');
+// nutrients.corpus: Map {code => description}
+// nutrients.load(): true (corpus loaded)
 // nutrients(<query>)
 // -> "description" if found, null otherwise
-// nutrients.corpus: Map {code => description}
+
+
+nutrients.load();
+/* load corpus first */
 
 nutrients('his');
 nutrients('Histidine');
