@@ -34,7 +34,7 @@ nutrients('are organic acids useful?');
 
 [![ifct2017](http://ninindia.org/images/ifct_2017.png)](https://www.npmjs.com/package/ifct2017)
 > You can ask about composition of 528 key foods in India here: [ifct2017.github.io].<br>
-> Food composition values were measured by [National Institute of Nutrition, Hyderabad].<br>
+> Food composition values were measured by [National Institute of Nutrition, Hyderabad].
 
 [Indian Food Composition Tables 2017]: http://ifct2017.com/
 [Nutrient descriptions]: https://github.com/ifct2017/nutrients/tree/master/assets

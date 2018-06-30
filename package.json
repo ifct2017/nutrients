@@ -1,6 +1,6 @@
 {
   "name": "@ifct2017/nutrients",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Information on nutrients in Indian Food Composition Tables 2017.",
   "main": "index.js",
   "scripts": {
@@ -26,9 +26,9 @@
   },
   "homepage": "https://github.com/ifct2017/nutrients#readme",
   "devDependencies": {
-    "lunr": "^2.2.1"
+    "lunr": "^2.3.0"
   },
   "dependencies": {
-    "@ifct2017/columns": "^0.2.4"
+    "@ifct2017/columns": "^1.0.1"
   }
 }
