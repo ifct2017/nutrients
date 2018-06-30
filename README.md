@@ -1,9 +1,4 @@
-# @ifct2017/nutrients
-
-[![ifct2017](http://ninindia.org/images/ifct_2017.png)](https://www.npmjs.com/package/ifct2017)
-
-Information of nutrients in [Indian Food Composition Tables 2017].<br>
-Check available [nutrient descriptions].
+[Nutrient descriptions] in [Indian Food Composition Tables 2017].
 
 ```javascript
 const nutrients = require('@ifct2017/nutrients');
@@ -37,5 +32,11 @@ nutrients('are organic acids useful?');
 ```
 
 
+[![ifct2017](http://ninindia.org/images/ifct_2017.png)](https://www.npmjs.com/package/ifct2017)
+> You can ask about composition of 528 key foods in India here: [ifct2017.github.io].<br>
+> Food composition values were measured by [National Institute of Nutrition, Hyderabad].<br>
+
 [Indian Food Composition Tables 2017]: http://ifct2017.com/
-[nutrient descriptions]: https://github.com/ifct2017/nutrients/tree/master/assets
+[Nutrient descriptions]: https://github.com/ifct2017/nutrients/tree/master/assets
+[ifct2017.github.io]: https://ifct2017.github.io
+[National Institute of Nutrition, Hyderabad]: http://www.ninindia.org
