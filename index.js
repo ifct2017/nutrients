@@ -1,5 +1,4 @@
 const columns = require('@ifct2017/columns');
-const path = require('path');
 
 var corpus = new Map();
 var ready = false;
