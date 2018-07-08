@@ -75,6 +75,7 @@ function writeCorpus(ast, tab) {
   fs.writeFileSync('corpus.js', z);
 };
 
+columns.load();
 var ast = readAssets();
 var idx = indexAssets(ast);
 var tab = createTable(idx);

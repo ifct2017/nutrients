@@ -5,10 +5,14 @@ var corpus = new Map();
 var ready = false;
 
 
-function load() {
-  if(ready) return true;
+function loadCorpus() {
   for(var [k, v] of require('./corpus'))
     corpus.set(k, v);
+};
+
+function load() {
+  if(ready) return true;
+  columns.load(); loadCorpus();
   return ready = true;
 };
 
