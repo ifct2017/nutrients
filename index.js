@@ -1,26 +1,23 @@
 const columns = require('@ifct2017/columns');
 
-var corpus = new Map();
-var ready = false;
+var corpus = null;
 
 
-function loadCorpus() {
-  for(var [k, v] of require('./corpus'))
-    corpus.set(k, v);
-};
+
 
 function load() {
-  if(ready) return true;
-  columns.load(); loadCorpus();
-  return ready = true;
-};
+  if (corpus) return corpus;
+  corpus = require('./corpus');
+  columns.load();
+  return corpus;
+}
+
 
 function nutrients(txt) {
-  if(!ready) return null;
-  var mats = columns(txt);
-  if(mats.length===0) return null;
-  return corpus.get(mats[0].code)||null;
-};
+  if (!corpus) load();
+  var ms = columns(txt);
+  if(ms.length===0) return null;
+  return corpus.get(ms[0].code)||null;
+}
 nutrients.load = load;
-nutrients.corpus = corpus;
 module.exports = nutrients;
