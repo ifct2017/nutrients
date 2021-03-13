@@ -1,8 +1,8 @@
-const columns = require('@ifct2017/columns');
-const lunr = require('lunr');
-const path = require('path');
 const fs = require('fs');
 const os = require('os');
+const path = require('path');
+const lunr = require('lunr');
+const columns = require('../columns');
 
 const OVERRIDE = new Map([
   ['tocpha', 'vitamin-e'],
@@ -15,29 +15,38 @@ const OVERRIDE = new Map([
   ['cartb', 'carotenoid'],
 ]);
 
+
+
+
+function writeFile(pth, d) {
+  d = d.replace(/\r?\n/g, os.EOL);
+  fs.writeFileSync(pth, d);
+}
+
+
 function matchIndex(idx, txt) {
-  var z = [], txt = txt.replace(/\W/g, ' ');
-  var mats = idx.search(txt), max = 0;
-  for(var mat of mats)
-    max = Math.max(max, Object.keys(mat.matchData.metadata).length);
-  for(var mat of mats) {
-    var keys = Object.keys(mat.matchData.metadata).length;
+  var a = [], txt = txt.replace(/\W/g, ' ');
+  var ms = idx.search(txt), max = 0;
+  for(var m of ms)
+    max = Math.max(max, Object.keys(m.matchData.metadata).length);
+  for(var m of ms) {
+    var keys = Object.keys(m.matchData.metadata).length;
     if(keys<max) continue;
-    if(!mat.ref.includes('+') && max<mat.ref.split('-').length) continue;
-    z.push(mat);
+    if(!m.ref.includes('+') && max<m.ref.split('-').length) continue;
+    a.push(m);
   }
-  return z;
-};
+  return a;
+}
 
 function readAssets() {
-  var z = new Map();
+  var a = new Map();
   for(var f of fs.readdirSync('assets')) {
     var code = f.replace('.txt', ''), tags = code.replace(/\W+/g, ' ');
     var desc = fs.readFileSync(path.join('assets', f), 'utf8').replace(/\r\n?/g, '\n');
-    z.set(code, {code, tags, desc});
+    a.set(code, {code, tags, desc});
   }
-  return z;
-};
+  return a;
+}
 
 function indexAssets(map) {
   return lunr(function() {
@@ -47,35 +56,36 @@ function indexAssets(map) {
     for(var r of map.values())
       this.add(r);
   });
-};
+}
 
 function createTable(idx) {
   var z = new Map();
-  for(var c of columns.corpus.values()) {
-    var tags = `${c.code} ${c.name.replace(/\W+/g, ' ').toLowerCase()} ${c.tags}`;
-    var mats = matchIndex(idx, tags);
-    // if(mats.length===0) console.log(c.name, tags, mats);
-    if(mats.length===0) continue;
-    var code = OVERRIDE.get(c.code)||mats[0].ref, r = z.get(code);
+  for(var c of columns.load().values()) {
+    var cname = c.name.replace(/\W+/g, ' ').toLowerCase();
+    var tags = `${c.code} ${c.code} ${c.code} ${cname} ${cname} ${c.tags}`;
+    var ms = matchIndex(idx, tags);
+    // if (c.code==='cartb') console.log(tags, ms);
+    if(ms.length===0) console.log(c.name, tags, ms);
+    if(ms.length===0) continue;
+    var code = OVERRIDE.get(c.code)||ms[0].ref, r = z.get(code);
     // console.log(`${c.code} -> ${code}`);
     z.set(c.code, code);
   }
   return z;
-};
+}
 
 function writeCorpus(ast, tab) {
-  var z = '';
-  for(var [k, v] of ast)
-    z += `const ${k.replace(/\W+/g, '_')} = ${JSON.stringify(v.desc)};${os.EOL}`;
-  z += `const CORPUS = new Map([${os.EOL}`;
-  for(var [k, v] of tab)
-    z += `  ["${k}", ${v.replace(/\W+/g, '_')}],${os.EOL}`;
-  z += `]);${os.EOL}`;
-  z += `module.exports = CORPUS;${os.EOL}`;
-  fs.writeFileSync('corpus.js', z);
-};
+  var a = '';
+  for (var [k, v] of ast)
+    a += `const ${k.replace(/\W+/g, '_')} = ${JSON.stringify(v.desc)};\n`;
+  a += `const CORPUS = new Map([\n`;
+  for (var [k, v] of tab)
+    a += `  ["${k}", ${v.replace(/\W+/g, '_')}],\n`;
+  a += `]);\n`;
+  a += `module.exports = CORPUS;\n`;
+  writeFile('corpus.js', a);
+}
 
-columns.load();
 var ast = readAssets();
 var idx = indexAssets(ast);
 var tab = createTable(idx);
