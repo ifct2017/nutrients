@@ -2,7 +2,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const lunr = require('lunr');
-const columns = require('../columns');
+const columns = require('@ifct2017/columns');
 
 const OVERRIDE = new Map([
   ['tocpha', 'vitamin-e'],
