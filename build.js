@@ -18,6 +18,11 @@ const OVERRIDE = new Map([
 
 
 
+function readFile(pth) {
+  var d = fs.readFileSync(pth, 'utf8');
+  return d.replace(/\r?\n/g, '\n');
+}
+
 function writeFile(pth, d) {
   d = d.replace(/\r?\n/g, os.EOL);
   fs.writeFileSync(pth, d);
@@ -41,8 +46,10 @@ function matchIndex(idx, txt) {
 function readAssets() {
   var a = new Map();
   for(var f of fs.readdirSync('assets')) {
-    var code = f.replace('.txt', ''), tags = code.replace(/\W+/g, ' ');
-    var desc = fs.readFileSync(path.join('assets', f), 'utf8').replace(/\r\n?/g, '\n');
+    var pth = path.join('assets', f);
+    var code = f.replace('.txt', '');
+    var tags = code.replace(/\W+/g, ' ');
+    var desc = readFile(pth).replace(/[\n\s]+$/, '');
     a.set(code, {code, tags, desc});
   }
   return a;
@@ -65,7 +72,7 @@ function createTable(idx) {
     var tags = `${c.code} ${c.code} ${c.code} ${cname} ${cname} ${c.tags}`;
     var ms = matchIndex(idx, tags);
     // if (c.code==='cartb') console.log(tags, ms);
-    if(ms.length===0) console.log(c.name, tags, ms);
+    if(ms.length===0) console.log('Skipped:', c.name, tags, ms);
     if(ms.length===0) continue;
     var code = OVERRIDE.get(c.code)||ms[0].ref, r = z.get(code);
     // console.log(`${c.code} -> ${code}`);
