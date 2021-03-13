@@ -1,17 +1,15 @@
 Detailed description of various [nutrients], and its components.
+
 > This is part of package [ifct2017].<br>
-> Source: [Indian Food Composition Tables 2017].
+> Online database: [ifct2017.github.io].
+
+<br>
 
 ```javascript
 const nutrients = require('@ifct2017/nutrients');
-// nutrients.corpus: Map {code => description}
-// nutrients.load(): true (corpus loaded)
-// nutrients(<query>)
-// -> "description" if found, null otherwise
+// nutrients(query)
+// → nutrient description if found, null otherwise
 
-
-nutrients.load();
-/* load corpus first */
 
 nutrients('his');
 nutrients('Histidine');
@@ -33,9 +31,17 @@ nutrients('are organic acids useful?');
 // been included in the total energy of foods given in the IFCT.
 ```
 
+```javascript
+// Additional methods:
+nutrients.load() // → corpus
+```
 
-[![ifct2017](http://ifct2017.com/ifct_2017.jpg)](https://www.npmjs.com/package/ifct2017)
-> You can ask about composition of 528 key foods in India here: [ifct2017.github.io].<br>
+<br>
+<br>
+
+[![](https://i.imgur.com/D5UYmbD.jpg)](http://ifct2017.com/)
+
+> Data was obtained from the book [Indian Food Composition Tables 2017].<br>
 > Food composition values were measured by [National Institute of Nutrition, Hyderabad].
 
 [ifct2017]: https://www.npmjs.com/package/ifct2017
