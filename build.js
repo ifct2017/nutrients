@@ -1,5 +1,5 @@
-const fs = require('fs');
-const os = require('os');
+const fs   = require('fs');
+const os   = require('os');
 const path = require('path');
 const lunr = require('lunr');
 const columns = require('@ifct2017/columns');
@@ -10,9 +10,9 @@ const OVERRIDE = new Map([
   ['toctra', 'vitamin-e'],
   ['toctrd', 'vitamin-e'],
   ['crypxb', 'carotenoid'],
-  ['cartg', 'carotenoid'],
-  ['carta', 'carotenoid'],
-  ['cartb', 'carotenoid'],
+  ['cartg',  'carotenoid'],
+  ['carta',  'carotenoid'],
+  ['cartb',  'carotenoid'],
 ]);
 
 
@@ -30,14 +30,14 @@ function writeFile(pth, d) {
 
 
 function matchIndex(idx, txt) {
-  var a = [], txt = txt.replace(/\W/g, ' ');
+  var a  = [], txt = txt.replace(/\W/g, ' ');
   var ms = idx.search(txt), max = 0;
-  for(var m of ms)
+  for (var m of ms)
     max = Math.max(max, Object.keys(m.matchData.metadata).length);
-  for(var m of ms) {
+  for (var m of ms) {
     var keys = Object.keys(m.matchData.metadata).length;
-    if(keys<max) continue;
-    if(!m.ref.includes('+') && max<m.ref.split('-').length) continue;
+    if (keys<max) continue;
+    if (!m.ref.includes('+') && max < m.ref.split('-').length) continue;
     a.push(m);
   }
   return a;
@@ -45,8 +45,8 @@ function matchIndex(idx, txt) {
 
 function readAssets() {
   var a = new Map();
-  for(var f of fs.readdirSync('assets')) {
-    var pth = path.join('assets', f);
+  for (var f of fs.readdirSync('assets')) {
+    var pth  = path.join('assets', f);
     var code = f.replace('.txt', '');
     var tags = code.replace(/\W+/g, ' ');
     var desc = readFile(pth).replace(/[\n\s]+$/, '');
@@ -60,25 +60,25 @@ function indexAssets(map) {
     this.ref('code');
     this.field('tags');
     this.pipeline.remove(lunr.stopWordFilter);
-    for(var r of map.values())
+    for (var r of map.values())
       this.add(r);
   });
 }
 
 function createTable(idx) {
-  var z = new Map();
-  for(var c of columns.load().values()) {
+  var a = new Map();
+  for (var c of columns.load().values()) {
     var cname = c.name.replace(/\W+/g, ' ').toLowerCase();
     var tags = `${c.code} ${c.code} ${c.code} ${cname} ${cname} ${c.tags}`;
     var ms = matchIndex(idx, tags);
     // if (c.code==='cartb') console.log(tags, ms);
-    if(ms.length===0) console.log('Skipped:', c.name, tags, ms);
-    if(ms.length===0) continue;
-    var code = OVERRIDE.get(c.code)||ms[0].ref, r = z.get(code);
+    if (ms.length===0) console.log('Skipped:', c.name, tags, ms);
+    if (ms.length===0) continue;
+    var code = OVERRIDE.get(c.code)||ms[0].ref, r = a.get(code);
     // console.log(`${c.code} -> ${code}`);
-    z.set(c.code, code);
+    a.set(c.code, code);
   }
-  return z;
+  return a;
 }
 
 function writeCorpus(ast, tab) {

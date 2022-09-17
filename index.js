@@ -16,7 +16,7 @@ function load() {
 function nutrients(txt) {
   if (!corpus) load();
   var ms = columns(txt);
-  if(ms.length===0) return null;
+  if (ms.length===0) return null;
   return corpus.get(ms[0].code)||null;
 }
 nutrients.load = load;
