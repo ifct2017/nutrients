@@ -1,16 +1,13 @@
 {
   "name": "@ifct2017/nutrients",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "Detailed description of various nutrients, and its components.",
   "main": "index.js",
   "scripts": {
+    "test": "node ./build && node ./test",
     "build": "node ./build",
-    "deploy": "node ./build && ebuild publish+github --publishMin=false --publishBranch=false",
-    "test": "node ./build && node ./tests"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ifct2017/nutrients.git"
+    "publish-docs": "node ./build publish-docs",
+    "publish-packages": "node ./build publish-packages"
   },
   "keywords": [
     "ifct",
@@ -34,15 +31,20 @@
   ],
   "author": "wolfram77@gmail.com",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ifct2017/nutrients.git"
+  },
   "bugs": {
     "url": "https://github.com/ifct2017/nutrients/issues"
   },
   "homepage": "https://github.com/ifct2017/nutrients#readme",
-  "devDependencies": {
-    "extra-build": "^1.3.31",
-    "lunr": "^2.3.1"
-  },
   "dependencies": {
-    "@ifct2017/columns": "2"
+    "@ifct2017/columns": "^2.0.13"
+  },
+  "devDependencies": {
+    "extra-build": "^2.2.29",
+    "extra-fs": "^3.2.10",
+    "lunr": "^2.3.9"
   }
 }
